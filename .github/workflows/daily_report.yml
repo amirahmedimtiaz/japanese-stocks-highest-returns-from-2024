@@ -1,0 +1,33 @@
+name: Daily Japanese Stock Report
+
+on:
+  schedule:
+    # This runs at 00:00 UTC every day. 
+    # Adjust the cron expression if you want a different time.
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows you to run it manually from the GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run script
+      env:
+        EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      run: python highest_returns_since_2024.py

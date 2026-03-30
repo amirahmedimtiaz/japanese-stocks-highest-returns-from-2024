@@ -1,0 +1,7 @@
+pandas
+yfinance
+requests
+xlrd
+openpyxl
+curl_cffi
+python-dotenv

@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.csv
+daily_log.txt
+run_daily.sh
+.venv/
+myenv/
