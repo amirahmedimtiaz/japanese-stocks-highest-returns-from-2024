@@ -114,6 +114,7 @@ def analyze_market(ticker_info: list[tuple[str, str, str]]):
                         "Ticker": ticker, 
                         "Name": name, 
                         "Sector": sector,
+                        "First Trading Date": hist.index[0].strftime('%Y-%m-%d'),
                         "Start Price (2024)": round(price_start, 2),
                         "Latest Price": round(price_end, 2),
                         "Return %": round(return_pct, 2),
